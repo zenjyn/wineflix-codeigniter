@@ -10,22 +10,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return [
           <?php foreach ($videos as $video): ?>
             {
-              id: `<?php echo $video->id; ?>`,
-              imageUrl: `<?php echo $video->image_url; ?>`,
-              isNew: `<?php echo $video->is_new; ?>`,
-              label: `<?php echo $video->label; ?>`,
-              isFinished: `<?php echo $video->is_finished; ?>`,
-              progress: `<?php echo $video->progress; ?>`,
+              id: "<?php echo $video['id']; ?>",
+              imageUrl: "<?php echo $video['image_url']; ?>",
+              isNew: "<?php echo $video['is_new']; ?>",
+              label: "<?php echo $video['label']; ?>",
+              isFinished: "<?php echo $video['is_finished']; ?>",
+              progress: <?php echo $video['progress']; ?>,
             },
           <?php endforeach; ?>
         ];
       },
       heroContent() {
         return {
-          title: `<?php echo $hero_content->title; ?>`,
-          subtitle: `<?php echo $hero_content->subtitle; ?>`,
-          imageUrl: `<?php echo $hero_content->image_url; ?>`,
-          description: `<?php echo $hero_content->description; ?>`,
+          title: "<?php echo $hero_content['title']; ?>",
+          subtitle: "<?php echo $hero_content['subtitle']; ?>",
+          imageUrl: "<?php echo $hero_content['image_url']; ?>",
+          description: "<?php echo $hero_content['description']; ?>",
         };
       },
     },
@@ -52,10 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </section>
       </nav>
       <div class="hero-content">
-        <h2>
-          <img alt="Rex Goliath" src="https://sika-wineflix.web.app/rex-goliath-logo.png">
-        </h2>
-        <h3>His Royal Majesty is back.</h3>
+        <hero-title
+          :subtitle="heroContent.subtitle"
+          :imageUrl="heroContent.imageUrl"
+        />
         <p>
           America's most unhinged rooster is out of retirement, and this time? He's mad
           as hell.  Experience the unapologetic flavor burst of Rex Goliath.
@@ -200,5 +200,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   const app = Vue.createApp(App)
   app.component('user-avatar', UserAvatar)
+  app.component('hero-title', HeroTitle)
   app.mount('#app')
 </script>
