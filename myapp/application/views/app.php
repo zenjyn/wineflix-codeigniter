@@ -83,22 +83,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </header>
     <main>
-      <section class="category">
-        <h2>Drink Again</h2>
-        <ul>
-          <li v-for="wine in drinkAgain" :key="wine.id">
-            <wine-list-item :wine="wine" />
-          </li>
-        </ul>
-      </section>
-      <section class="category">
-        <h2>Keep Drinking</h2>
-        <ul>
-          <li v-for="wine in keepDrinking" :key="wine.id">
-            <wine-list-item :wine="wine" />
-          </li>
-        </ul>
-      </section>
+      <wine-list-section title="Drink Again" :wineList="drinkAgain" />
+      <wine-list-section title="Keep Drinking" :wineList="keepDrinking" />
     </main>
     `
   }
@@ -106,6 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   const app = Vue.createApp(App);
   app.component('user-avatar', UserAvatar);
   app.component('hero-title', HeroTitle);
+  app.component('wine-list-section', WineListSection);
   app.component('wine-list-item', WineListItem);
   app.mount('#app');
 </script>
