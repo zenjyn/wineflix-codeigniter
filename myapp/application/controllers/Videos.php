@@ -155,6 +155,7 @@ class Videos extends CI_Controller {
 		$this->load->view('html_head');
 		$this->load->view('components/user_avatar');
 		$this->load->view('components/hero_title');
+    $this->load->view('components/wine_list_item');
 		$this->load->view('app', $data);
 		$this->load->view('html_foot');
 	}

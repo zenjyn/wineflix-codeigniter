@@ -28,6 +28,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           description: "<?php echo $hero_content['description']; ?>",
         };
       },
+      drinkAgain() {
+        return this.videos.filter(wine => wine.isFinished);
+      },
+      keepDrinking() {
+        return this.videos.filter(wine => wine.progress > 0);
+      },
     },
     template: `
     <header class="hero">
@@ -80,117 +86,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <section class="category">
         <h2>Drink Again</h2>
         <ul>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <span class="new-badge">New!</span>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <span class="new-badge">New!</span>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <span class="new-badge">New!</span>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-            </div>
+          <li v-for="wine in drinkAgain" :key="wine.id">
+            <wine-list-item :wine="wine" />
           </li>
         </ul>
       </section>
       <section class="category">
         <h2>Keep Drinking</h2>
         <ul>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="wine">
-              <img src="https://sika-wineflix.web.app/red-wine.jpg" alt="Wine">
-              <div class="amount-consumed">
-                <progress min="0" max="100" value="22"></progress>
-              </div>
-            </div>
+          <li v-for="wine in keepDrinking" :key="wine.id">
+            <wine-list-item :wine="wine" />
           </li>
         </ul>
       </section>
@@ -198,8 +103,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     `
   }
 
-  const app = Vue.createApp(App)
-  app.component('user-avatar', UserAvatar)
-  app.component('hero-title', HeroTitle)
-  app.mount('#app')
+  const app = Vue.createApp(App);
+  app.component('user-avatar', UserAvatar);
+  app.component('hero-title', HeroTitle);
+  app.component('wine-list-item', WineListItem);
+  app.mount('#app');
 </script>
